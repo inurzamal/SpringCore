@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">    
+    
+
+<!--     <bean class="com.springcore.constructorInjection.B" name="b_ref" c:y="30" /> -->
+    
+	<bean class="com.springcore.constructorInjection.B" name="b_ref">
+		<constructor-arg value="50" />
+	</bean>
+
+	<bean class="com.springcore.constructorInjection.A" name="a_ref">	
+		<constructor-arg value="10" />
+		<constructor-arg ref="b_ref" />
+	</bean>
+	
+	<bean name="person1" class="com.springcore.constructorInjection.Person">		
+		<constructor-arg value="Kiyaan" />
+		<constructor-arg value="101" type="int"/>
+		<constructor-arg value="Guwahati" />
+		<constructor-arg>
+			<list>
+				<value>Apple</value>
+				<value>Mango</value>
+				<value>Grapes</value>
+			</list>
+		</constructor-arg>
+	</bean> 
+	
+	<!-- another bean using c:schema -->
+	<bean name="person2" class="com.springcore.constructorInjection.Person" 
+	c:id="102" c:name="Kiyaan Islam" c:city="Mumbai" c:list="Java, Python, Android" />
+	  
+</beans>
